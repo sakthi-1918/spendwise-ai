@@ -778,11 +778,11 @@ if not st.session_state.authenticated:
       <div class="auth-logo-name">SpendWise AI</div>
       <div class="auth-logo-tagline">Track smarter. Spend wiser.</div>
     </div>""", unsafe_allow_html=True)
-    st.markdown('<div class="auth-card">', unsafe_allow_html=True)
+    # st.markdown('<div class="auth-card">', unsafe_allow_html=True)
     scr = st.session_state.auth_screen
 
     if scr == "login":
-        st.markdown('<div class="auth-heading">Welcome back 👋</div><div class="auth-subhead">Log in to your account</div>', unsafe_allow_html=True)
+        st.markdown('<div class="auth-heading" style="text-align: center;">Welcome back 👋</div><div class="auth-subhead" style="text-align: center;">Log in to your account</div>', unsafe_allow_html=True)
         with st.form("login_form", border=False):
             l_email = st.text_input("Email", placeholder="you@example.com")
             l_pwd   = st.text_input("Password", type="password", placeholder="••••••••")
