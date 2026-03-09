@@ -1,3 +1,4 @@
+
 """
 SpendWise AI — Personal Expense Tracker
 Stack: Streamlit · LangChain · Groq (Llama 4 Scout) · Supabase · Plotly
@@ -36,30 +37,8 @@ html, body, [class*="css"], .stApp {
   font-size: 16px !important;
   -webkit-font-smoothing: antialiased !important;
 }
-#MainMenu, footer, header { visibility: hidden; display: none !important; height: 0 !important; }
+#MainMenu, footer, header { visibility: hidden; }
 [data-testid="stSidebar"] { display: none !important; }
-
-/* ─── KILL WHITE SPACE / WHITE BG AT BOTTOM ────────────── */
-.stApp, .stApp > div,
-[data-testid="stAppViewContainer"],
-[data-testid="stAppViewBlockContainer"],
-[data-testid="stBottom"],
-[data-testid="stBottomBlockContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-[data-testid="stVerticalBlock"] {
-  background-color: #07070f !important;
-  background: #07070f !important;
-}
-body {
-  background-color: #07070f !important;
-  overscroll-behavior: none !important;
-}
-[data-testid="stBottom"] {
-  background: #07070f !important;
-  border-top: none !important;
-  padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-}
 .block-container {
   padding: 0 16px 130px 16px !important;
   max-width: min(520px, 100%) !important;
@@ -680,7 +659,7 @@ recharges, gifts, entertainment, and any personal payment or money given out.
 
 If the input is NOT a genuine expense (e.g. it's a question, a greeting, or
 completely unrelated to money), respond with EXACTLY:
-  {"error": "not_an_expense"}
+  {{"error": "not_an_expense"}}
 
 If it IS a genuine expense, return ONLY a valid JSON object with:
   - "item"        : short descriptive name (string, title-cased)
@@ -770,11 +749,11 @@ if not st.session_state.authenticated:
       <div class="auth-logo-name">SpendWise AI</div>
       <div class="auth-logo-tagline">Track smarter. Spend wiser.</div>
     </div>""", unsafe_allow_html=True)
-    st.markdown('<div class="auth-card">', unsafe_allow_html=True)
+    #st.markdown('<div class="auth-card">', unsafe_allow_html=True)
     scr = st.session_state.auth_screen
 
     if scr == "login":
-        st.markdown('<div class="auth-heading">Welcome back 👋</div><div class="auth-subhead">Log in to your account</div>', unsafe_allow_html=True)
+        st.markdown('<div class="auth-heading" style="text-align: center;">Welcome back 👋</div><div class="auth-subhead" style="text-align: center;">Log in to your account</div>', unsafe_allow_html=True)
         with st.form("login_form", border=False):
             l_email = st.text_input("Email", placeholder="you@example.com")
             l_pwd   = st.text_input("Password", type="password", placeholder="••••••••")
@@ -1180,7 +1159,7 @@ elif tab == "manage":
                 _, ba, bb = st.columns([3, 1, 1])
                 if ba.button("✏️ Edit", key=f"edit_{row['id']}", use_container_width=True):
                     st.session_state.edit_id = int(row["id"]); st.rerun()
-                if bb.button("🗑️ Del", key=f"del_{row['id']}", use_container_width=True):
+                if bb.button("🗑️ Delete", key=f"del_{row['id']}", use_container_width=True):
                     delete_expense(int(row["id"])); fetch_expenses.clear()
                     st.success(f"Deleted: {row['item']}"); st.rerun()
 
