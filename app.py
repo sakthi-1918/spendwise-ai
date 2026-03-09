@@ -688,7 +688,7 @@ recharges, gifts, entertainment, and any personal payment or money given out.
 
 If the input is NOT a genuine expense (e.g. it's a question, a greeting, or
 completely unrelated to money), respond with EXACTLY:
-  {"error": "not_an_expense"}
+  {{"error": "not_an_expense"}}
 
 If it IS a genuine expense, return ONLY a valid JSON object with:
   - "item"        : short descriptive name (string, title-cased)
